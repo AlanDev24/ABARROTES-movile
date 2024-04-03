@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".LoginActivity">
+
+    <EditText
+        android:id="@+id/et_correoLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Correo electronico"
+        android:textAlignment="center"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/et_contraseñaLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Contraseña"
+        android:textAlignment="center"
+
+        android:inputType="textPassword" />
+
+
+
+    <Button
+        android:id="@+id/btn_ingresar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ingresar" />
+
+
+
+    <Button
+        android:id="@+id/btn_registro_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registrarse" />
+
+    <TextView
+        android:id="@+id/tv_recuperar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Olvide mi contraseña"
+        android:textAlignment="center" />
+</LinearLayout>

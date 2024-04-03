@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "756210952069",
+    "project_id": "peliculas-6dc5c",
+    "storage_bucket": "peliculas-6dc5c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:756210952069:android:992f47de642e0a6bf706ec",
+        "android_client_info": {
+          "package_name": "Itson.potros"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCm98pbcTa_xDEtLG4lifUx2yTItSM3H48"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:756210952069:android:be88e41f58d578bef706ec",
+        "android_client_info": {
+          "package_name": "gonzalez.alan.peliculas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCm98pbcTa_xDEtLG4lifUx2yTItSM3H48"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
