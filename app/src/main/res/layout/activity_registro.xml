@@ -9,7 +9,7 @@
     tools:context=".RegistroActivity">
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/etNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -18,16 +18,15 @@
         android:hint="Nombre" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/etGenero"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Genero"
-        android:textAlignment="center"
-         />
+        android:textAlignment="center" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/etEdad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -36,7 +35,7 @@
         android:inputType="number" />
 
     <EditText
-        android:id="@+id/editTextPhone"
+        android:id="@+id/etTelefono"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -45,7 +44,7 @@
         android:inputType="phone" />
 
     <EditText
-        android:id="@+id/et_correoRegistro"
+        android:id="@+id/etCorreo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -54,7 +53,7 @@
         android:textAlignment="center" />
 
     <EditText
-        android:id="@+id/et_contraseña"
+        android:id="@+id/etContraseña"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -63,7 +62,7 @@
         android:inputType="textPassword" />
 
     <EditText
-        android:id="@+id/et_contraseña2"
+        android:id="@+id/etContraseña2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -72,7 +71,7 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/btn_registro"
+        android:id="@+id/btnRegistrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Registrar" />

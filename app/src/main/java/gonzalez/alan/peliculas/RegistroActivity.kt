@@ -1,25 +1,27 @@
 package gonzalez.alan.peliculas
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.database.FirebaseDatabase
 
 class RegistroActivity : AppCompatActivity() {
 
-    lateinit var auth: FirebaseAuth
-    lateinit var et_nombre: EditText
-    lateinit var et_genero: EditText
-    lateinit var et_edad: EditText
-    lateinit var et_telefono: EditText
-    lateinit var et_correo: EditText
-    lateinit var et_contraseña: EditText
-    lateinit var et_contraseña2: EditText
-    lateinit var btn_registrar: Button
+    private lateinit var auth: FirebaseAuth
+    private lateinit var etNombre: EditText
+    private lateinit var etGenero: EditText
+    private lateinit var etEdad: EditText
+    private lateinit var etTelefono: EditText
+    private lateinit var etCorreo: EditText
+    private lateinit var etContraseña: EditText
+    private lateinit var etContraseña2: EditText
+    private lateinit var btnRegistrar: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,23 +29,23 @@ class RegistroActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        et_nombre = findViewById(R.id.editTextText)
-        et_genero = findViewById(R.id.editTextText2)
-        et_edad = findViewById(R.id.editTextNumber)
-        et_telefono = findViewById(R.id.editTextPhone)
-        et_correo = findViewById(R.id.et_correoRegistro)
-        et_contraseña = findViewById(R.id.et_contraseña)
-        et_contraseña2 = findViewById(R.id.et_contraseña2)
-        btn_registrar = findViewById(R.id.btn_registro)
+        etNombre = findViewById(R.id.etNombre)
+        etGenero = findViewById(R.id.etGenero)
+        etEdad = findViewById(R.id.etEdad)
+        etTelefono = findViewById(R.id.etTelefono)
+        etCorreo = findViewById(R.id.etCorreo)
+        etContraseña = findViewById(R.id.etContraseña)
+        etContraseña2 = findViewById(R.id.etContraseña2)
+        btnRegistrar = findViewById(R.id.btnRegistrar)
 
-        btn_registrar.setOnClickListener {
-            val nombre = et_nombre.text.toString().trim()
-            val genero = et_genero.text.toString().trim()
-            val edad = et_edad.text.toString().trim()
-            val telefono = et_telefono.text.toString().trim()
-            val correo = et_correo.text.toString().trim()
-            val contraseña1 = et_contraseña.text.toString().trim()
-            val contraseña2 = et_contraseña2.text.toString().trim()
+        btnRegistrar.setOnClickListener {
+            val nombre = etNombre.text.toString().trim()
+            val genero = etGenero.text.toString().trim()
+            val edad = etEdad.text.toString().trim()
+            val telefono = etTelefono.text.toString().trim()
+            val correo = etCorreo.text.toString().trim()
+            val contraseña1 = etContraseña.text.toString().trim()
+            val contraseña2 = etContraseña2.text.toString().trim()
 
             if (nombre.isEmpty() || genero.isEmpty() || edad.isEmpty() || telefono.isEmpty() ||
                 correo.isEmpty() || contraseña1.isEmpty() || contraseña2.isEmpty()) {
@@ -61,14 +63,17 @@ class RegistroActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         val user = auth.currentUser
                         val userId = user?.uid ?: ""
-                        // Guardar datos en la base de datos
                         guardarUsuarioEnBaseDeDatos(userId, nombre, genero, edad, telefono, correo)
-                        // Redirigir al inicio de sesión
                         Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     } else {
-                        Log.w("RegistroActivity", "createUserWithEmail:failure", task.exception)
-                        Toast.makeText(this, "No se pudo registrar al usuario", Toast.LENGTH_SHORT).show()
+                        val errorCode = if (task.exception is FirebaseAuthException) {
+                            (task.exception as FirebaseAuthException).errorCode
+                        } else {
+                            ""
+                        }
+                        handleAuthError(errorCode)
                     }
                 }
         }
@@ -91,5 +96,13 @@ class RegistroActivity : AppCompatActivity() {
             "correo" to correo
         )
         database.child("usuarios").child(userId).setValue(userData)
+    }
+
+    private fun handleAuthError(errorCode: String) {
+        when (errorCode) {
+            "ERROR_INVALID_EMAIL" -> Toast.makeText(this, "El formato del correo electrónico es inválido", Toast.LENGTH_SHORT).show()
+            "ERROR_WEAK_PASSWORD" -> Toast.makeText(this, "La contraseña es demasiado débil", Toast.LENGTH_SHORT).show()
+            else -> Toast.makeText(this, "Error de autenticación: $errorCode", Toast.LENGTH_SHORT).show()
+        }
     }
 }
