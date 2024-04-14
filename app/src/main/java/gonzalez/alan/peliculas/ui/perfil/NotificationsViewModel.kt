@@ -1,4 +1,4 @@
-package gonzalez.alan.peliculas.ui.notifications
+package gonzalez.alan.peliculas.ui.perfil
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
