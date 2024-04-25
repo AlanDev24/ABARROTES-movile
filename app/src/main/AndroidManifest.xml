@@ -19,6 +19,9 @@
             android:name=".RegistroActivity"
             android:exported="false" />
         <activity
+            android:name=".InventarioActivity"
+            android:exported="false"/>
+        <activity
             android:name=".LoginActivity"
             android:exported="true" >
             <intent-filter>
