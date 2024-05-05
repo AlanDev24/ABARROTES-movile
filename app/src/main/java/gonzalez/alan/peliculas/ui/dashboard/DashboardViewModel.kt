@@ -1,10 +1,10 @@
-package gonzalez.alan.peliculas.ui.agregarProducto
+package gonzalez.alan.peliculas.ui.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class RegistrarProductoViweModel : ViewModel() {
+class DashboardViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is dashboard Fragment"

@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.agregarProducto.RegistrarProducto">
-
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".RegistroActivity">
 
     <EditText
         android:id="@+id/etNombreProducto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Nombre del producto"
         android:inputType="text"
         android:textAlignment="center"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="54dp" />
+        android:hint="Nombre del producto" />
 
     <EditText
         android:id="@+id/etCategoriaProducto"
@@ -24,9 +23,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Categoria del producto"
-        android:textAlignment="center"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="166dp" />
+        android:textAlignment="center" />
 
     <EditText
         android:id="@+id/etStock"
@@ -34,10 +31,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Cantidad de stock"
-        android:inputType="number"
         android:textAlignment="center"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="269dp" />
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/etPrecio"
@@ -45,17 +40,15 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Precio del producto"
-        android:inputType="number"
         android:textAlignment="center"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="366dp" />
+        android:inputType="number" />
+
+
 
     <Button
         android:id="@+id/btnRegistrarProducto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Registrar"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="581dp" />
+        android:text="Registrar" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
