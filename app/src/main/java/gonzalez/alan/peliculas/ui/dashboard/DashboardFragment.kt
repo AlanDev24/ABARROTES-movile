@@ -1,3 +1,5 @@
+package gonzalez.alan.peliculas.ui.dashboard
+
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
