@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -34,10 +35,15 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getProductosDB()
+        getProductosDB(view)
+
+        val btnActualizar: Button = view.findViewById(R.id.btnActualizar)
+        btnActualizar.setOnClickListener {
+            actualizarProductosEnFirebase();
+        }
     }
 
-    private fun getProductosDB(){
+    private fun getProductosDB(view: View){
         val database = FirebaseDatabase.getInstance().reference.child("productos")
 
         database.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -51,6 +57,8 @@ class HomeFragment : Fragment() {
                     }
                 }
 
+                Log.i("productos",productos.toString());
+
                 val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
                 val adapter = ProductoAdapter(productos)
                 recyclerView.adapter = adapter
@@ -63,5 +71,28 @@ class HomeFragment : Fragment() {
                 Toast.makeText(requireContext(), "Error al obtener productos: ${databaseError.message}", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun actualizarProductosEnFirebase() {
+        val recyclerView: RecyclerView = view?.findViewById(R.id.recyclerView) ?: return
+        val adapter = recyclerView.adapter as? ProductoAdapter ?: return
+
+        val productosActualizados = adapter.getProductosUpdated()
+        val database = FirebaseDatabase.getInstance().reference.child("productos")
+
+        productosActualizados.forEach { (productName, producto) ->
+            database.orderByChild("nombre").equalTo(productName).addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    dataSnapshot.children.forEach { productSnapshot ->
+                        productSnapshot.ref.setValue(producto)
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                   Toast.makeText(requireContext(), "Error al actualizar los productos", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+        Toast.makeText(requireContext(), "Productos actualizados", Toast.LENGTH_SHORT).show()
     }
 }
